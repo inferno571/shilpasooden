@@ -431,7 +431,7 @@ function CTA() {
           Let's design a tailored learning experience that aligns with your specific organizational goals.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <a href="mailto:shilpa.sooden@yahoo.com" className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 text-[10px] tracking-widest font-bold uppercase text-white bg-[#1A1A1A] hover:bg-[#333333] transition-colors">
+          <a href="mailto:shilpa.sooden@yahoo.com?subject=Corporate%20Training%20Inquiry&body=Hi%20Shilpa,%0A%0AI%20am%20interested%20in%20learning%20more%20about%20your%20corporate%20training%20programs.%20I%20would%20like%20to%20discuss%20how%20we%20can%20collaborate.%0A%0ABest%20regards," target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 text-[10px] tracking-widest font-bold uppercase text-white bg-[#1A1A1A] hover:bg-[#333333] transition-colors">
             Contact Me
           </a>
         </div>

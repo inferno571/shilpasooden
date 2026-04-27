@@ -431,7 +431,7 @@ function CTA() {
           Let's design a tailored learning experience that aligns with your specific organizational goals.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=shilpa.sooden@yahoo.com&su=Corporate%20Training%20Inquiry&body=Hi%20Shilpa,%0A%0AI%20am%20interested%20in%20learning%20more%20about%20your%20corporate%20training%20programs.%20I%20would%20like%20to%20discuss%20how%20we%20can%20collaborate.%0A%0ABest%20regards," target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 text-[10px] tracking-widest font-bold uppercase text-white bg-[#1A1A1A] hover:bg-[#333333] transition-colors">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=shilpa.sooden9@gmail.com&su=Corporate%20Training%20Inquiry&body=Hi%20Shilpa,%0A%0AI%20am%20interested%20in%20learning%20more%20about%20your%20corporate%20training%20programs.%20I%20would%20like%20to%20discuss%20how%20we%20can%20collaborate.%0A%0ABest%20regards," target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 text-[10px] tracking-widest font-bold uppercase text-white bg-[#1A1A1A] hover:bg-[#333333] transition-colors">
             Contact Me
           </a>
         </div>
@@ -457,6 +457,11 @@ function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center border-t border-[#1A1A1A] pt-8">
           <div className="text-[10px] uppercase tracking-widest text-[#8A8A8A] font-bold mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Shilpa Sooden • Global Financial Education
+          </div>
+          <div className="text-[10px] uppercase tracking-widest text-[#8A8A8A] font-bold">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sakshamsooden@gmail.com&su=Website%20Development%20Inquiry&body=Hi%20Saksham,%0A%0AI%20saw%20your%20work%20on%20Shilpa's%20website%20and%20I%20am%20interested%20in%20getting%20a%20similar%20website%20developed.%20Let's%20connect!" target="_blank" rel="noopener noreferrer" className="hover:text-[#1A1A1A] transition-colors flex items-center justify-center text-center">
+              Want a similar website? Contact Creator
+            </a>
           </div>
         </div>
       </div>

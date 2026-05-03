@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, 
   LineChart, 
@@ -11,9 +11,15 @@ import {
   Terminal, 
   Landmark,
   ChevronRight,
-  Download
+  Download,
+  Bot,
+  Shield,
+  Quote,
+  Star,
+  Camera,
+  Linkedin
 } from 'lucide-react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -58,6 +64,7 @@ function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <a href="#about" className="text-[#1A1A1A] hover:opacity-70 transition-opacity text-[10px] uppercase tracking-widest font-bold">About</a>
             <a href="#services" className="text-[#1A1A1A] hover:opacity-70 transition-opacity text-[10px] uppercase tracking-widest font-bold">Methodology</a>
+            <a href="#testimonials" className="text-[#1A1A1A] hover:opacity-70 transition-opacity text-[10px] uppercase tracking-widest font-bold">Testimonials</a>
             <a href="#audience" className="text-[#1A1A1A] hover:opacity-70 transition-opacity text-[10px] uppercase tracking-widest font-bold">Client Success</a>
             <a href="#contact" className="bg-[#1A1A1A] text-white px-6 py-3 text-[10px] uppercase tracking-widest font-bold hover:bg-[#333333] transition-colors">
               Let's Talk
@@ -84,7 +91,7 @@ function Hero() {
               variants={fadeIn}
               className="text-5xl sm:text-6xl lg:text-[72px] font-serif leading-[0.9] tracking-tight text-[#1A1A1A] mb-8"
             >
-              Equipping Financial Workforces for the <span className="italic">Future</span> of Banking.
+              Equipping Financial Workforces for the <span className="italic">Future</span> of Banking & Insurance.
             </motion.h1>
             <motion.p 
               variants={fadeIn}
@@ -300,6 +307,12 @@ const workshops = [
     title: "Leadership & Financial Psychology",
     description: "Transform managers into leaders through behavioral insights.",
     topics: ["Emotional Intelligence", "Client CRM", "Cross-Selling Strategies", "Change Management"]
+  },
+  {
+    icon: <Bot className="w-6 h-6 text-[#1A1A1A]" />,
+    title: "Insurance Automation & Agentic AI",
+    description: "Designed and delivered training on RPA, AI, and Agentic AI for insurance operations — covering claims processing, underwriting, and customer service transformation.",
+    topics: ["RPA & Hyperautomation", "Human-Bot-AI Collaboration", "Agentic AI for Claims & Underwriting", "AI Governance & Ethics", "Digital Workforce Transformation"]
   }
 ];
 
@@ -326,7 +339,7 @@ function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className={`bg-[#F9F7F2] p-8 border border-[#1A1A1A] flex flex-col hover:bg-[#EAE6DF] transition-colors ${idx === 3 || idx === 4 ? 'lg:col-span-1' : ''}`}
+              className="bg-[#F9F7F2] p-8 border border-[#1A1A1A] flex flex-col hover:bg-[#EAE6DF] transition-colors"
             >
               <div className="mb-6 w-min p-3 border border-[#1A1A1A] bg-[#F9F7F2]">
                 {workshop.icon}
@@ -374,6 +387,11 @@ const audiences = [
     icon: <Landmark className="w-5 h-5 text-[#1A1A1A]" />,
     title: "Banking & FS",
     description: "Upskilling retail, commercial, and investment banking workforces."
+  },
+  {
+    icon: <Shield className="w-5 h-5 text-[#1A1A1A]" />,
+    title: "Insurance & InsurTech",
+    description: "Empowering insurance teams with RPA, Agentic AI, and hyperautomation for claims, underwriting, and customer service."
   }
 ];
 
@@ -414,6 +432,210 @@ function Audience() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const testimonials = [
+  {
+    name: "Ramesh Ramakrishnan",
+    role: "Country Head / GCC Leader",
+    company: "Konecranes",
+    quote: "Thank you to Shilpa Sooden and to Konecranes for a high-impact Financial Acumen for Leaders program. The guidance sharpened our strategic thinking and strengthened our ability to lead with clarity, confidence, and accountability. We appreciate your commitment to facilitate and develop stronger, financially savvy leaders.",
+    platform: "LinkedIn"
+  },
+  {
+    name: "Shruti Gupta",
+    role: "Team Lead, Recruitment Services and Payroll (APAC)",
+    company: "Konecranes",
+    quote: "Thank you Shilpa Sooden for conducting such a thoughtful session and sharpening our strategic thinking ability and covering financial aspects of those.. A very productive 2 days session.",
+    platform: "LinkedIn"
+  }
+];
+
+const participantFeedback = [
+  "Strong command and provides simple, relevant examples",
+  "Case studies helped participants think differently",
+  "Explains everything in a simple and clear manner",
+  "Good communication; overall training relevant for participants",
+  "Case study with different segment was very insightful",
+  "Good knowledgeable and insides taught"
+];
+
+function Testimonials() {
+  const [activeFeedback, setActiveFeedback] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveFeedback((prev) => (prev + 1) % participantFeedback.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section id="testimonials" className="py-24 bg-[#F9F7F2] border-b border-[#1A1A1A]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-xs font-bold uppercase tracking-widest mb-6 flex items-center justify-center gap-2">
+            <span className="w-4 h-[1px] bg-[#1A1A1A]"></span>
+            Voices of Impact
+            <span className="w-4 h-[1px] bg-[#1A1A1A]"></span>
+          </h2>
+          <h3 className="text-4xl md:text-6xl font-serif leading-[0.9] tracking-tight text-[#1A1A1A] mb-8">
+            What <span className="italic">Leaders</span> Are Saying
+          </h3>
+        </div>
+
+        {/* Impact Metrics Strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#1A1A1A] border border-[#1A1A1A] mb-16"
+        >
+          {[
+            { value: "4.8/5", label: "Avg. Mentor Rating" },
+            { value: "20+", label: "Years of Experience" },
+            { value: "25+", label: "Corporate Partners" },
+            { value: "500+", label: "Professionals Trained" }
+          ].map((stat, i) => (
+            <div key={i} className="bg-[#F9F7F2] p-8 text-center">
+              <div className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] tracking-tight mb-2">{stat.value}</div>
+              <div className="text-[10px] font-bold uppercase tracking-widest text-[#8A8A8A]">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* LinkedIn Testimonials */}
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          {testimonials.map((t, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.15 }}
+              className="bg-[#EAE6DF] border border-[#1A1A1A] p-8 md:p-10 flex flex-col relative"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 border border-[#1A1A1A] flex items-center justify-center bg-[#F9F7F2]">
+                  <Linkedin className="w-5 h-5 text-[#1A1A1A]" />
+                </div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-[#8A8A8A]">
+                  {t.platform} Endorsement
+                </div>
+              </div>
+
+              <Quote className="w-8 h-8 text-[#1A1A1A]/10 mb-4" />
+
+              <p className="font-serif text-lg leading-relaxed text-[#1A1A1A] mb-8 flex-grow italic">
+                "{t.quote}"
+              </p>
+
+              <div className="border-t border-[#1A1A1A]/10 pt-6 mt-auto">
+                <div className="text-sm font-bold text-[#1A1A1A] mb-1">{t.name}</div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-[#8A8A8A]">
+                  {t.role} — {t.company}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Rotating Participant Feedback */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="bg-[#1A1A1A] border border-[#1A1A1A] p-8 md:p-12 text-center relative overflow-hidden"
+        >
+          <div className="flex items-center justify-center gap-1 mb-6">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-4 h-4 text-[#D4A853] fill-[#D4A853]" />
+            ))}
+          </div>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[#F9F7F2]/50 mb-4">Participant Feedback</p>
+          <div className="h-16 flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={activeFeedback}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.5 }}
+                className="font-serif text-xl md:text-2xl text-[#F9F7F2] italic max-w-3xl"
+              >
+                "{participantFeedback[activeFeedback]}"
+              </motion.p>
+            </AnimatePresence>
+          </div>
+          <div className="flex items-center justify-center gap-2 mt-6">
+            {participantFeedback.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveFeedback(i)}
+                className={`w-2 h-2 transition-all duration-300 ${
+                  i === activeFeedback ? 'bg-[#D4A853] scale-125' : 'bg-[#F9F7F2]/20'
+                }`}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+const galleryImages = [
+  { src: "/images2/konecranes-group.jpeg", alt: "Financial Acumen for Leaders — Konecranes", span: "md:col-span-2" },
+  { src: "/images2/idfc-masterclass.jpeg", alt: "The Future of Banking — IDFC First Bank Masterclass", span: "" },
+  { src: "/images2/idfc-presentation.jpeg", alt: "Shilpa presenting to IDFC First Bank team", span: "" },
+  { src: "/images2/idfc-wide-group.jpeg", alt: "Training session group photo — IDFC First Bank", span: "md:col-span-2" },
+  { src: "/images2/konecranes-felicitation.jpeg", alt: "Felicitation at Konecranes leadership program", span: "" },
+  { src: "/images2/tvs-credit-group.jpeg", alt: "Corporate training session — TVS Credit", span: "md:col-span-2" },
+];
+
+function Gallery() {
+  return (
+    <section className="py-24 bg-[#EAE6DF] border-b border-[#1A1A1A]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
+              <span className="w-4 h-[1px] bg-[#1A1A1A]"></span>
+              In Action
+            </h2>
+            <h3 className="text-4xl md:text-6xl font-serif leading-[0.9] tracking-tight text-[#1A1A1A]">
+              Training <span className="italic">Moments</span>
+            </h3>
+          </div>
+          <p className="text-sm text-[#4A4A4A] max-w-md leading-relaxed">
+            From intimate leadership workshops to large-scale banking masterclasses — real sessions with real teams across India's top organizations.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 auto-rows-[280px]">
+          {galleryImages.map((img, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.08 }}
+              className={`relative overflow-hidden border border-[#1A1A1A] group cursor-default ${img.span}`}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-[#1A1A1A]/80 backdrop-blur-sm px-4 py-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[#F9F7F2]">{img.alt}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -477,6 +699,8 @@ export default function App() {
       <SocialProof />
       <About />
       <Services />
+      <Testimonials />
+      <Gallery />
       <Audience />
       <CTA />
       <Footer />

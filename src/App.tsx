@@ -21,7 +21,8 @@ import {
   Globe,
   GraduationCap,
   TrendingUp,
-  Monitor
+  Monitor,
+  ChevronDown
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
@@ -798,6 +799,89 @@ function Footer() {
   );
 }
 
+const faqs = [
+  {
+    q: "What is a corporate trainer?",
+    a: "A corporate trainer is a specialized educator who works within a business environment to enhance the skills, knowledge, and performance of employees. Unlike academic teachers, corporate trainers focus on practical, business-aligned learning that directly impacts an organization's operational efficiency, compliance, and profitability."
+  },
+  {
+    q: "What does a corporate trainer do?",
+    a: "A corporate trainer designs and delivers targeted training programs to address specific organizational needs. Their responsibilities include conducting skill-gap assessments, developing curriculum, facilitating live or virtual training sessions, and measuring the business impact of these programs on employee performance."
+  },
+  {
+    q: "What industries do your training programs cover?",
+    a: "My programs are specifically designed for Banking, Financial Services, Insurance (BFSI), FinTech, and Global Capability Centers (GCCs)."
+  },
+  {
+    q: "Who are these training programs designed for?",
+    a: "They are designed for mid-to-senior professionals, project managers, IT and consulting teams, and retail/commercial banking workforces who need to bridge the gap between financial theory and practical business application."
+  },
+  {
+    q: "How is your training methodology different from standard corporate training?",
+    a: "I leverage over two decades of frontline banking leadership to deliver high-impact, simulation-based learning. We use live diagnostics, operational case studies, and decision-based exercises to teach the 'how' and 'why'."
+  },
+  {
+    q: "Do you offer both in-person and virtual training?",
+    a: "Yes, I provide flexible delivery formats, including in-person workshops, virtual masterclasses, and SCORM-compliant digital learning modules tailored to your organization's LMS."
+  },
+  {
+    q: "Can the curriculum be customized for our specific organizational needs?",
+    a: "Absolutely. Whether you need an intensive module on ISO 20022 and Global Payments, or foundational financial literacy for IT teams, every program is tailored to align with your specific business goals and market nuances."
+  }
+];
+
+function FAQ() {
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
+
+  return (
+    <section id="faq" className="py-24 bg-[#EAE6DF] border-b border-[#1A1A1A]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-xs font-bold uppercase tracking-widest mb-6 flex items-center justify-center gap-2">
+            <span className="w-4 h-[1px] bg-[#1A1A1A]"></span>
+            Frequently Asked Questions
+            <span className="w-4 h-[1px] bg-[#1A1A1A]"></span>
+          </h2>
+          <h3 className="text-4xl md:text-5xl font-serif leading-[0.9] tracking-tight text-[#1A1A1A]">
+            Answers to Your <span className="italic">Questions</span>
+          </h3>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => (
+            <div 
+              key={idx} 
+              className="bg-[#F9F7F2] border border-[#1A1A1A] overflow-hidden"
+            >
+              <button
+                onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#EAE6DF] transition-colors"
+              >
+                <span className="font-serif text-lg font-bold text-[#1A1A1A]">{faq.q}</span>
+                <ChevronDown className={`w-5 h-5 text-[#1A1A1A] transition-transform duration-300 ${openIdx === idx ? 'rotate-180' : ''}`} />
+              </button>
+              <AnimatePresence>
+                {openIdx === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="px-6 pb-6 pt-2 text-[#4A4A4A] leading-relaxed border-t border-[#1A1A1A]/10 mx-6 mt-2">
+                      {faq.a}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function App() {
   return (
     <div className="min-h-screen font-sans bg-[#F9F7F2] text-[#1A1A1A] selection:bg-[#1A1A1A] selection:text-[#F9F7F2]">
@@ -810,6 +894,7 @@ export default function App() {
       <Testimonials />
       <Gallery />
       <Audience />
+      <FAQ />
       <CTA />
       <Footer />
     </div>
